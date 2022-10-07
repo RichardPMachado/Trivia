@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Login from './pages/Login';
+import Configuracao from './pages/Configuracao';
 // import logo from './trivia.png';
 // import './App.css';
 
@@ -12,7 +13,8 @@ export default function App() {
           <img src={ logo } className="App-logo" alt="logo" />
           <p>SUA VEZ</p>
         </header> */}
-      <Route component={ Login } path="/" exact />
+      <Route exact path="/" component={ Login } />
+      <Route path="/config" component={ Configuracao } />
     </Switch>
   );
 }
