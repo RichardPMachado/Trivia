@@ -14,6 +14,11 @@ class Login extends React.Component {
     this.setState({ [name]: value }, () => this.verifyBtn());
   };
 
+  handleClickConfig = () => {
+    const { history } = this.props;
+    history.push('/config');
+  };
+
   verifyBtn = () => {
     const { name, email } = this.state;
     const regex = /\S+@\S+\.\S+/;
@@ -67,7 +72,13 @@ class Login extends React.Component {
           >
             Play
           </button>
-
+          <button
+            data-testid="btn-settings"
+            type="button"
+            onClick={ this.handleClickConfig }
+          >
+            Configurações
+          </button>
         </form>
       </div>
     );
@@ -81,4 +92,7 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(null, mapDispatchToProps)(Login);
 Login.propTypes = {
   addUser: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
