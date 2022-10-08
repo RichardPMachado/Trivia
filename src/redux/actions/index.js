@@ -1,3 +1,5 @@
+import md5 from 'crypto-js/md5';
+
 export const INITIAL_REQ = 'INITIAL_REQ';
 export const FINAL_REQ = 'FINAL_REQ';
 export const TOKEN_REQUEST = 'TOKEN_REQUEST';
@@ -21,12 +23,13 @@ const getApiToken = () => async (dispatch) => {
   }
 };
 
-// const criarImg = (email) => {
-//   const hash = md5(email).toString();
-//   return `https://www.gravatar.com/avatar/${hash}`;
-// };
+const criarImg = (email) => {
+  const hash = md5(email).toString();
+  return `https://www.gravatar.com/avatar/${hash}`;
+};
 
 export {
+  criarImg,
   getApiToken,
   initialRequest,
   finalRequest,
