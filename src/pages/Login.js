@@ -1,12 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
+import { getUser, getApiToken } from '../redux/actions';
 
 class Login extends React.Component {
   state = {
     name: '',
     email: '',
     isDisabled: true,
+    isRedirect: false,
   };
 
   handleInput = ({ target }) => {
@@ -28,15 +31,26 @@ class Login extends React.Component {
     this.setState({ isDisabled: !btnState });
   };
 
-  handleClick = (e) => {
-    e.prenventDefault();
-    const { addUser } = this.props;
-    // const { email, user } = this.state;
-    addUser(this.state);
+  handleClick = async (e) => {
+    e.preventDefault();
+    const { addUser, tokenAction } = this.props;
+    const { email, name } = this.state;
+    const obj = {
+      email, name,
+    };
+    addUser(obj);
+    await tokenAction();
+    const { tokenProps } = this.props;
+
+    console.log('oi', tokenProps);
+    localStorage.setItem('token', tokenProps);
+    this.setState({
+      isRedirect: true,
+    });
   };
 
   render() {
-    const { name, email, isDisabled } = this.state;
+    const { name, email, isDisabled, isRedirect } = this.state;
 
     return (
       <div>
@@ -80,19 +94,29 @@ class Login extends React.Component {
             Configurações
           </button>
         </form>
+        {isRedirect && <Redirect to="/game-page" /> }
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  addUser: (state) => dispatch(getUser(state)),
+const mapStateToProps = (state) => ({
+  tokenProps: state.user.token,
+  // scoreProps: state.gamepage.score,
+  emailProps: state.user.email,
 });
 
-export default connect(null, mapDispatchToProps)(Login);
+const mapDispatchToProps = (dispatch) => ({
+  addUser: (state) => dispatch(getUser(state)),
+  tokenAction: () => dispatch(getApiToken()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
 Login.propTypes = {
+  tokenAction: PropTypes.func.isRequired,
+  tokenProps: PropTypes.string.isRequired,
   addUser: PropTypes.func.isRequired,
   history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
+    push: PropTypes.func,
   }).isRequired,
 };
