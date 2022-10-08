@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 class Login extends React.Component {
@@ -13,7 +14,7 @@ class Login extends React.Component {
     this.setState({ [name]: value }, () => this.verifyBtn());
   };
 
-  handleClick = () => {
+  handleClickConfig = () => {
     const { history } = this.props;
     history.push('/config');
   };
@@ -25,6 +26,13 @@ class Login extends React.Component {
     const nameVerify = name.length > 0;
     const btnState = verifyEmail && nameVerify;
     this.setState({ isDisabled: !btnState });
+  };
+
+  handleClick = (e) => {
+    e.prenventDefault();
+    const { addUser } = this.props;
+    // const { email, user } = this.state;
+    addUser(this.state);
   };
 
   render() {
@@ -50,7 +58,7 @@ class Login extends React.Component {
               data-testid="input-gravatar-email"
               type="email"
               name="email"
-              placeholder="Digite seu nome"
+              placeholder="Digite seu email"
               onChange={ this.handleInput }
               value={ email }
             />
@@ -60,13 +68,14 @@ class Login extends React.Component {
             type="submit"
             data-testid="btn-play"
             disabled={ isDisabled }
+            onClick={ this.handleClick }
           >
             Play
           </button>
           <button
             data-testid="btn-settings"
             type="button"
-            onClick={ this.handleClick }
+            onClick={ this.handleClickConfig }
           >
             Configurações
           </button>
@@ -76,10 +85,14 @@ class Login extends React.Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  addUser: (state) => dispatch(getUser(state)),
+});
+
+export default connect(null, mapDispatchToProps)(Login);
 Login.propTypes = {
+  addUser: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
 };
-
-export default Login;
