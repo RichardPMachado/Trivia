@@ -26,7 +26,7 @@ class Game extends React.Component {
       this.setState({
         correctAnswer: results[0].correct_answer,
       });
-      const numberAux = 1;
+      const numberAux = 0.3;
       const toSorted = [
         results[0].correct_answer, ...results[0].incorrect_answers];
       const randomSequence = toSorted.sort(() => Math.random() - numberAux);
