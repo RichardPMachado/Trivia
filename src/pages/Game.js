@@ -38,7 +38,7 @@ class Game extends React.Component {
     } else {
       localStorage.clear();
       this.setState({ isRedirect: true });
-      throw new Error('Token Invalid');
+      // throw new Error('Token Invalid');
     }
   };
 
