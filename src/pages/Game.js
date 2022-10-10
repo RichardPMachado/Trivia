@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { fetchGame } from '../redux/actions';
 import Loading from '../components/Loading';
+import './Game.css';
 
 class Game extends React.Component {
   state = {
@@ -13,6 +14,8 @@ class Game extends React.Component {
     answers: [],
     isLoading: true,
     isRedirect: false,
+    isDisabled: true,
+    borderColorButton: [],
   };
 
   componentDidMount() {
@@ -42,8 +45,22 @@ class Game extends React.Component {
     }
   };
 
+  handleClick = (correctAnswer, answers) => {
+    let test = [];
+    answers.forEach((element) => {
+      if (correctAnswer === element) {
+        test = [...test, 'correct-answer'];
+      } else {
+        test = [...test, 'incorrect-answer'];
+      }
+    });
+    this.setState({ borderColorButton: [...test], isDisabled: false });
+  };
+
   render() {
-    const { questions, correctAnswer, answers, isLoading, isRedirect } = this.state;
+    const { questions, correctAnswer, answers,
+      isLoading, isRedirect, isDisabled,
+      borderColorButton } = this.state;
     // console.log(questions)
     return (
       <div>
@@ -59,6 +76,8 @@ class Game extends React.Component {
                     <button
                       type="button"
                       key={ index }
+                      className={ isDisabled ? 'button' : borderColorButton[index] }
+                      onClick={ () => this.handleClick(correctAnswer, answers) }
                       data-testid={
                         answer === correctAnswer
                           ? 'correct-answer' : `wrong-answer-${index}`
