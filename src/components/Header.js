@@ -5,7 +5,7 @@ import { criarImg } from '../redux/actions/index';
 
 class Header extends React.Component {
   render() {
-    const { name, gravatarEmail } = this.props;
+    const { name, gravatarEmail, score } = this.props;
     const profile = criarImg(gravatarEmail);
 
     return (
@@ -15,8 +15,8 @@ class Header extends React.Component {
           src={ profile }
           alt="imagen do jogador"
         />
-        <h1 data-testid="header-player-name">{ name }</h1>
-        <h1 data-testid="header-score">0</h1>
+        <h2 data-testid="header-player-name">{ name }</h2>
+        <h2 data-testid="header-score">{ score }</h2>
       </header>
 
     );
@@ -26,11 +26,13 @@ class Header extends React.Component {
 Header.propTypes = {
   name: PropTypes.string.isRequired,
   gravatarEmail: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  name: state.user.name,
-  gravatarEmail: state.user.gravatarEmail,
+  name: state.playerReducer.name,
+  gravatarEmail: state.playerReducer.gravatarEmail,
+  score: state.playerReducer.score,
 });
 
 export default connect(mapStateToProps)(Header);

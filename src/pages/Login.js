@@ -41,8 +41,6 @@ class Login extends React.Component {
     addUser(obj);
     await tokenAction();
     const { tokenProps } = this.props;
-
-    console.log('oi', tokenProps);
     localStorage.setItem('token', tokenProps);
     this.setState({
       isRedirect: true,
@@ -101,9 +99,7 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  tokenProps: state.user.token,
-  // scoreProps: state.gamepage.score,
-  emailProps: state.user.email,
+  tokenProps: state.playerReducer.token,
 });
 
 const mapDispatchToProps = (dispatch) => ({
