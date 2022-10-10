@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { fetchGame } from '../redux/actions';
 import Loading from '../components/Loading';
@@ -12,10 +12,9 @@ class Game extends React.Component {
     questions: [],
     correctAnswer: '',
     answers: [],
-    // isLoading: true,
+    isLoading: true,
     isRedirect: false,
-    isDisabledColorButton: true,
-    // isDisabled: true,
+    isDisabled: true,
     borderColorButton: [],
   };
 
@@ -24,27 +23,25 @@ class Game extends React.Component {
   }
 
   fetchGameQuest = async () => {
-    const { fetchGameDispatch } = this.props;
-    await fetchGameDispatch();
-    const { questionsProps } = this.props;
-    const {
-      results,
-      response_code: responseCode,
-    } = questionsProps;
+    const { results, responseCode } = await fetchGame();
+    console.log(results);
     if (responseCode === 0) {
-      const numberAux = 0.5;
-      const toSorted = [results[0].correct_answer, ...results[0].incorrect_answers];
-      const randomSequence = toSorted.sort(() => Math.random() - numberAux);
-      // console.log(randomSequence);
       this.setState({
-        questions: questionsProps,
         correctAnswer: results[0].correct_answer,
+      });
+      const numberAux = 0.5;
+      const toSorted = [
+        results[0].correct_answer, ...results[0].incorrect_answers];
+      const randomSequence = toSorted.sort(() => Math.random() - numberAux);
+      this.setState({
+        questions: results,
         answers: randomSequence,
+        isLoading: false,
       });
     } else {
       localStorage.clear();
       this.setState({ isRedirect: true });
-      throw new Error('Token Invalid');
+      // throw new Error('Token Invalid');
     }
   };
 
@@ -72,16 +69,27 @@ class Game extends React.Component {
   //   this.setState({ borderColorButton: [...aux], isDisabledColorButton: false });
   // };
 
-  render() {
-    const { correctAnswer, answers, isRedirect, questions,
-      isDisabledColorButton, borderColorButton } = this.state;
-    console.log(questions);
+  handleClick = (correctAnswer, answers) => {
+    let test = [];
+    answers.forEach((element) => {
+      if (correctAnswer === element) {
+        test = [...test, 'correct-answer'];
+      } else {
+        test = [...test, 'incorrect-answer'];
+      }
+    });
+    this.setState({ borderColorButton: [...test], isDisabled: false });
+  };
 
-    const { isLoadingProps } = this.props;
+  render() {
+    const { questions, correctAnswer, answers,
+      isLoading, isRedirect, isDisabled,
+      borderColorButton } = this.state;
+    // console.log(questions)
     return (
       <div>
         <Header />
-        {isLoadingProps ? <Loading />
+        {isLoading ? <Loading />
           : (
             <section>
               <p data-testid="question-category">{questions[0].category}</p>
@@ -92,7 +100,7 @@ class Game extends React.Component {
                     <button
                       type="button"
                       key={ index }
-                      className={ isDisabledColorButton
+                      className={ isDisabled
                         ? 'button' : borderColorButton[index] }
                       onClick={ () => this.handleClick(correctAnswer, answers) }
                       data-testid={
@@ -113,29 +121,29 @@ class Game extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-//   emailProps: state.playerReducer.gravatarEmail,
-//   nameProps: state.playerReducer.name,
-  questionsProps: state.gameReducer.questions,
-  isLoadingProps: state.playerReducer.isLoading,
-  // isRedirectProps: state.playerReducer.isRedirect,
-});
+// const mapStateToProps = (state) => ({
+// //   emailProps: state.playerReducer.gravatarEmail,
+// //   nameProps: state.playerReducer.name,
+//   questionsProps: state.gameReducer.questions,
+//   isLoadingProps: state.playerReducer.isLoading,
+//   // isRedirectProps: state.playerReducer.isRedirect,
+// });
 
-const mapDispatchToProps = (dispatch) => ({
-  // dispatchError: () => dispatch(actLogout()),
-  fetchGameDispatch: () => dispatch(fetchGame()),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   // dispatchError: () => dispatch(actLogout()),
+//   fetchGameDispatch: () => dispatch(fetchGame()),
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Game);
+export default connect()(Game);
 
-Game.propTypes = {
-  resultsProps: PropTypes.shape({
-    responseCode: PropTypes.number,
-    questionsProps: PropTypes.shape({
-      results: PropTypes.shape(PropTypes.objectOf),
-      responseCode: PropTypes.number,
-    }),
-  }).isRequired,
-  isLoading: PropTypes.bool,
-  isRedirect: PropTypes.bool,
-}.isRequire;
+// Game.propTypes = {
+//   resultsProps: PropTypes.shape({
+//     responseCode: PropTypes.number,
+//     questionsProps: PropTypes.shape({
+//       results: PropTypes.shape(PropTypes.objectOf),
+//       responseCode: PropTypes.number,
+//     }),
+//   }).isRequired,
+//   isLoading: PropTypes.bool,
+//   isRedirect: PropTypes.bool,
+// }.isRequire;
