@@ -22,6 +22,7 @@ class Game extends React.Component {
 
   componentDidMount() {
     this.fetchGameQuest();
+    this.cronometroTimer();
   }
 
   // shuffleArray = (arr) => {
@@ -71,6 +72,22 @@ class Game extends React.Component {
     }
   };
 
+  cronometroTimer = () => {
+    this.setState({ totalSeconds: 30 }, () => {
+      const second = 1000;
+      const idInterval = setInterval(() => {
+        this.setState((prevState) => ({
+          totalSeconds: prevState.totalSeconds - 1,
+        }), () => {
+          const { totalSeconds } = this.state;
+          if (totalSeconds === 0) {
+            clearInterval(idInterval);
+          }
+        });
+      }, second);
+    });
+  };
+
   handleClick = (correctAnswer, answers, index) => {
     const { dispatchPoint } = this.props;
     // console.log(answers);
@@ -104,7 +121,7 @@ class Game extends React.Component {
   };
 
   render() {
-    const { questions, answers,
+    const { questions, answers, totalSeconds,
       isLoading, isRedirect, isDisabled,
       borderColorButton, questionsResponse } = this.state;
     return (
@@ -113,6 +130,7 @@ class Game extends React.Component {
         {isLoading ? <Loading />
           : (
             <section>
+              <p>{totalSeconds}</p>
               <p data-testid="question-category">
                 {questions[questionsResponse].category}
               </p>
