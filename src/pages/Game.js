@@ -10,7 +10,7 @@ import './Game.css';
 class Game extends React.Component {
   state = {
     questions: [],
-    correctAnswer: '',
+    // correctAnswer: '',
     answers: [],
     isLoading: true,
     isRedirect: false,
@@ -37,7 +37,7 @@ class Game extends React.Component {
 
   fetchGameQuest = async () => {
     const { results, responseCode } = await fetchGame();
-    console.log(results);
+    // console.log(results);
     if (responseCode === 0) {
       const toSorted = [];
       results.forEach((e, index) => {
@@ -46,16 +46,17 @@ class Game extends React.Component {
         };
       });
 
-      // const numberAux = 0.3;
-      const randomSequence = toSorted.map((e) => {
-        console.log(e.responses);
-      // e.responses.sort(() => Math.random() - numberAux);
-      });
-      console.log(randomSequence);
+      // console.log('toSorted', toSorted); // Tem apenas as respostas, dentro do toSorted.responses (array de strings)
+      // console.log('results', results); // Tem as perguntas e respostas
 
-      this.setState({
-        correctAnswer: results[0].correct_answer,
-      });
+      const numberAux = 0.3;
+      const randomSequence = toSorted.map(
+        (e) => e.responses.sort(() => Math.random() - numberAux),
+      );
+
+      // this.setState({
+      //   correctAnswer: results[0].correct_answer,
+      // });
 
       this.setState({
         questions: results,
@@ -71,8 +72,7 @@ class Game extends React.Component {
 
   handleClick = (correctAnswer, answers, index) => {
     const { dispatchPoint } = this.props;
-    const { questions } = this.state;
-    console.log(questions);
+    // console.log(answers);
     let test = [];
     answers.forEach((element) => {
       if (correctAnswer === element) {
@@ -82,7 +82,7 @@ class Game extends React.Component {
       }
     });
     this.setState({ borderColorButton: [...test], isDisabled: false });
-    console.log(questions[index].difficulty);
+    // console.log(questions[index].difficulty);
     if (answers[index] === correctAnswer) {
       dispatchPoint();
     }
@@ -92,14 +92,14 @@ class Game extends React.Component {
     const { questionsResponse } = this.state;
     this.setState({
       questionsResponse: questionsResponse + 1,
+      borderColorButton: [],
     });
   };
 
   render() {
-    const { questions, correctAnswer, answers,
+    const { questions, answers,
       isLoading, isRedirect, isDisabled,
       borderColorButton, questionsResponse } = this.state;
-    // console.log(questions)
     return (
       <div>
         <Header />
@@ -112,14 +112,18 @@ class Game extends React.Component {
               <p data-testid="question-text">{questions[questionsResponse].question}</p>
               <span data-testid="answer-options">
                 {
-                  answers.map((answer, index) => (
+                  answers[questionsResponse].map((answer, index) => (
                     <button
                       type="button"
                       key={ index }
                       className={ isDisabled ? 'button' : borderColorButton[index] }
-                      onClick={ () => this.handleClick(correctAnswer, answers, index) }
+                      onClick={ () => this.handleClick(
+                        questions[questionsResponse].correct_answer,
+                        answers[questionsResponse],
+                        index,
+                      ) }
                       data-testid={
-                        answer === correctAnswer
+                        answer === questions[questionsResponse].correct_answer
                           ? 'correct-answer' : `wrong-answer-${index}`
                       }
                     >
@@ -129,14 +133,16 @@ class Game extends React.Component {
                 }
                 <br />
                 <br />
-                <button
-                  className="btn-next-question"
-                  type="button"
-                  data-testid="btn-next"
-                  onClick={ this.handleNext }
-                >
-                  Next
-                </button>
+                {borderColorButton.length > 0 ? (
+                  <button
+                    className="btn-next-question"
+                    type="button"
+                    data-testid="btn-next"
+                    onClick={ this.handleNext }
+                  >
+                    Next
+                  </button>
+                ) : null }
               </span>
             </section>
           )}

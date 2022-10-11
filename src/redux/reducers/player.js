@@ -16,7 +16,7 @@ const INITIAL_STATE = {
   isRedirect: false,
 };
 
-const playerReducer = (state = INITIAL_STATE, action) => {
+const player = (state = INITIAL_STATE, action) => {
   const { payload } = action;
   // console.log('oi', payload);
 
@@ -57,4 +57,4 @@ const playerReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default playerReducer;
+export default player;
