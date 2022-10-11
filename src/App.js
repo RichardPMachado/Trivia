@@ -1,8 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import Game from './pages/Game';
 import Login from './pages/Login';
 import Configuracao from './pages/Configuracao';
-import Game from './pages/Game';
+import feedback from './pages/Feedback';
 
 // import logo from './trivia.png';
 // import './App.css';
@@ -18,6 +19,7 @@ function App() {
       <Route component={ Login } path="/" exact />
       <Route component={ Game } path="/game-page" exact />
       <Route component={ Configuracao } path="/config" exact />
+      <Route component={ feedback } path="/feedback" exact />
     </Switch>
   );
 }
