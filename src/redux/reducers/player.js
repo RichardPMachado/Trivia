@@ -8,7 +8,7 @@ import { ACTION_LOGOUT,
 
 const INITIAL_STATE = {
   name: '', // nome-da-pessoa
-  assertions: '', // número-de-acertos
+  assertions: 0, // número-de-acertos
   score: 0, // pontuação
   gravatarEmail: '', // email-da-pessoa
   token: '',
@@ -19,6 +19,7 @@ const INITIAL_STATE = {
 
 const player = (state = INITIAL_STATE, action) => {
   const { payload } = action;
+  const ten = 10;
   // console.log('oi', payload);
 
   switch (action.type) {
@@ -51,7 +52,9 @@ const player = (state = INITIAL_STATE, action) => {
   case COUNTER_POINT:
     return {
       ...state,
-      score: state.score + 1,
+      score: state.score
+      + (ten + (action.payload.timerPoint * action.payload.levelPoint)),
+      assertions: state.assertions + 1,
       // ranking: [...state.ranking, payload],
     };
   default:

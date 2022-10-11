@@ -92,6 +92,12 @@ class Game extends React.Component {
 
   handleClick = (correctAnswer, answers, index) => {
     const { dispatchPoint } = this.props;
+    const { totalSeconds, questions, questionsResponse } = this.state;
+    const level = {
+      easy: 1,
+      medium: 2,
+      hard: 3,
+    };
     let test = [];
     answers.forEach((element) => {
       if (correctAnswer === element) {
@@ -100,13 +106,10 @@ class Game extends React.Component {
         test = [...test, 'incorrect-answer'];
       }
     });
-    this.setState({ borderColorButton: [...test],
-      isDisabled: false,
-      breakTimer: true,
-    });
-    // console.log(questions[index].difficulty);
+    this.setState({ borderColorButton: [...test], isDisabled: false, breakTimer: true });
+    const { difficulty } = questions[questionsResponse];
     if (answers[index] === correctAnswer) {
-      dispatchPoint();
+      dispatchPoint({ timerPoint: totalSeconds, levelPoint: level[difficulty] });
     }
   };
 
