@@ -5,7 +5,7 @@ export const FINAL_REQ = 'FINAL_REQ';
 export const TOKEN_REQUEST = 'TOKEN_REQUEST';
 export const GET_USER = 'GET_USER';
 export const ACTION_LOGOUT = 'ACTION_LOGOUT';
-export const COUNTER_POINT = 'COUNTER_POINT'
+export const COUNTER_POINT = 'COUNTER_POINT';
 // export const FIVE_NEW_QUESTIONS = 'FIVE_NEW_QUESTIONS';
 
 const endPointToken = 'https://opentdb.com/api_token.php?command=request';

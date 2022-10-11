@@ -16,7 +16,7 @@ const INITIAL_STATE = {
   isRedirect: false,
 };
 
-const playerReducer = (state = INITIAL_STATE, action) => {
+const player = (state = INITIAL_STATE, action) => {
   const { payload } = action;
   // console.log('oi', payload);
 
@@ -50,11 +50,11 @@ const playerReducer = (state = INITIAL_STATE, action) => {
   case COUNTER_POINT:
     return {
       ...state,
-      score: state.score + 1
-    }
+      score: state.score + 1,
+    };
   default:
     return state;
   }
 };
 
-export default playerReducer;
+export default player;
