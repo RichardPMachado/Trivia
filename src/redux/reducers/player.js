@@ -3,6 +3,7 @@ import { ACTION_LOGOUT,
   GET_USER,
   INITIAL_REQ,
   TOKEN_REQUEST,
+  COUNTER_POINT,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -17,7 +18,7 @@ const INITIAL_STATE = {
 
 const playerReducer = (state = INITIAL_STATE, action) => {
   const { payload } = action;
-  console.log('oi', payload);
+  // console.log('oi', payload);
 
   switch (action.type) {
   case INITIAL_REQ:
@@ -46,6 +47,11 @@ const playerReducer = (state = INITIAL_STATE, action) => {
       ...state,
       isRedirect: true,
     };
+  case COUNTER_POINT:
+    return {
+      ...state,
+      score: state.score + 1
+    }
   default:
     return state;
   }
