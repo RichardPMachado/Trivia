@@ -45,14 +45,14 @@ const player = (state = INITIAL_STATE, action) => {
     };
   case ACTION_LOGOUT:
     return {
-      ...INITIAL_STATE,
+      ...state,
       isRedirect: true,
     };
   case COUNTER_POINT:
     return {
       ...state,
       score: state.score + 1,
-      ranking: [...state.ranking, { payload.score, state.name }],
+      // ranking: [...state.ranking, payload],
     };
   default:
     return state;

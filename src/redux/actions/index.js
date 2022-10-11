@@ -36,6 +36,7 @@ const criarImg = (email) => {
   const hash = md5(email).toString();
   return `https://www.gravatar.com/avatar/${hash}`;
 };
+
 const fetchGame = async () => {
   // dispatch(initialRequest());
   const token = localStorage.getItem('token');
