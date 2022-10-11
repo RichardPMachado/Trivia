@@ -7,6 +7,7 @@ import { fetchGame, counterPointers } from '../redux/actions';
 import Loading from '../components/Loading';
 import './Game.css';
 
+const num = 4;
 class Game extends React.Component {
   state = {
     questions: [],
@@ -90,6 +91,12 @@ class Game extends React.Component {
 
   handleNext = () => {
     const { questionsResponse } = this.state;
+    const { history } = this.props;
+
+    if (questionsResponse === num) {
+      history.push('/feedback');
+    }
+
     this.setState({
       questionsResponse: questionsResponse + 1,
       borderColorButton: [],
@@ -169,6 +176,9 @@ export default connect(null, mapDispatchToProps)(Game);
 
 Game.propTypes = {
   dispatchPoint: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 //   // emailProps: PropTypes.string,
