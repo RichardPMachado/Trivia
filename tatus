@@ -1,0 +1,150 @@
+[33mcommit 333370f7d4ba0445adae5f0977f296f3c6b3c013[m[33m ([m[1;36mHEAD -> [m[1;32mmain-group-2-requisito-04[m[33m, [m[1;32mmain-group-requisito-12[m[33m)[m
+Author: Rita Rocha <ritacassiasr@gmail.com>
+Date:   Mon Oct 10 16:38:22 2022 -0400
+
+    requisito 04 - teste
+
+[33mcommit b5bd78cd419f6da56b9c939d0dae9f658152f7c3[m[33m ([m[1;31morigin/main-group-2[m[33m, [m[1;32mmain-group-2[m[33m)[m
+Merge: 5dcac70 a28ae32
+Author: RICHARD PERET MACHADO <101995888+RichardPMachado@users.noreply.github.com>
+Date:   Sun Oct 9 23:32:03 2022 -0300
+
+    Merge pull request #195 from tryber/main-group-2-requisito-07
+    
+    Main group 2 requisito 07
+
+[33mcommit a28ae3204e641aeaafcdeadef25b59649c2e18d0[m[33m ([m[1;31morigin/main-group-2-requisito-07[m[33m)[m
+Author: RichardPMachado <richardmachado2211@gmail.com>
+Date:   Sun Oct 9 22:03:35 2022 -0300
+
+    requisito 7 - lint fixed
+
+[33mcommit 1aa5c96056be9992325e69a209bf905cff37a412[m
+Author: RichardPMachado <richardmachado2211@gmail.com>
+Date:   Sun Oct 9 21:57:39 2022 -0300
+
+    requisito 7 - completo
+
+[33mcommit 85a3fdf68f24486b6afcedf1f7b1dd957ca9ed44[m[33m ([m[1;31morigin/main-group-2-requisito-06[m[33m)[m
+Author: RichardPMachado <richardmachado2211@gmail.com>
+Date:   Sun Oct 9 20:38:11 2022 -0300
+
+    requisito 6 - finalmente completo
+
+[33mcommit 3bd2dec055be9fe3f10d5be17bc36915a16fcc21[m
+Author: RichardPMachado <richardmachado2211@gmail.com>
+Date:   Sun Oct 9 20:33:51 2022 -0300
+
+    requisito 6 - tirei o throw new Error e passou em quase todos os testes
+
+[33mcommit d9f6a72bc587b85527eb74155a518bbb6386d804[m
+Author: RichardPMachado <richardmachado2211@gmail.com>
+Date:   Sun Oct 9 20:31:08 2022 -0300
+
+    requisito 6 - esta funcionando mas passa o primeiro teste
+
+[33mcommit 5dcac704eb740da31ea9f84d76dc01298457eba9[m
+Merge: 53d8fab 435611f
+Author: RICHARD PERET MACHADO <101995888+RichardPMachado@users.noreply.github.com>
+Date:   Sat Oct 8 17:14:44 2022 -0300
+
+    Merge pull request #167 from tryber/main-group-2-requisito-5
+    
+    [ Grupo 2 ] - requisito 5
+
+[33mcommit 435611f4349db11b40fc0049337c341448d46ccc[m[33m ([m[1;31morigin/main-group-2-requisito-5[m[33m)[m
+Author: Ayanara <aya.nathane@gmail.com>
+Date:   Sat Oct 8 16:27:07 2022 -0300
+
+    requisito 5
+
+[33mcommit 53d8fabf9cfcac299b14846350ff7fd3e97e9725[m
+Merge: ddf310f bffa599
+Author: RICHARD PERET MACHADO <101995888+RichardPMachado@users.noreply.github.com>
+Date:   Sat Oct 8 16:57:15 2022 -0300
+
+    Merge pull request #165 from tryber/main-group-2-requisito-2
+    
+    Main group 2 requisito 2
+
+[33mcommit bffa5992481ed43f618eb8e23a0683fccb42d1bd[m[33m ([m[1;31morigin/main-group-2-requisito-2[m[33m)[m
+Author: RichardPMachado <richardmachado2211@gmail.com>
+Date:   Sat Oct 8 16:30:13 2022 -0300
+
+    requisito 2 - completo
+
+[33mcommit ddf310f50d377758da711e6c621f0ffbb45ec34e[m
+Merge: 757343e fdc4ad0
+Author: Ayanara Nathane <91984348+ayanara@users.noreply.github.com>
+Date:   Sat Oct 8 09:11:02 2022 -0300
+
+    Merge pull request #133 from tryber/main-group-2-requisito-2
+    
+    Main group 2 requisito 2
+
+[33mcommit fdc4ad08470f61c03e13b69cab7cd6b16324476d[m
+Merge: 60c3876 959eae8
+Author: Cristiane Kizelevicius <cristiane@samaan.com.br>
+Date:   Fri Oct 7 20:59:45 2022 -0300
+
+    realizando merge das branches requisito 2
+
+[33mcommit 757343e6ad36274b82c56848de272e1b7b82ec63[m
+Merge: 72472aa 959eae8
+Author: RICHARD PERET MACHADO <101995888+RichardPMachado@users.noreply.github.com>
+Date:   Fri Oct 7 20:29:08 2022 -0300
+
+    Merge pull request #109 from tryber/main-group-2-requisito-03
+    
+    [GRUPO 2] - Requisito 3
+
+[33mcommit 60c38767c01abfe5774df0f67d54cf5f3ae6dae1[m
+Author: Cristiane Kizelevicius <cristiane@samaan.com.br>
+Date:   Fri Oct 7 20:24:23 2022 -0300
+
+    implementando requisito 2
+
+[33mcommit 959eae8d62bc6ac5dde8061deaa3a3e08a6efff7[m[33m ([m[1;31morigin/main-group-2-requisito-03[m[33m)[m
+Author: JohnnyNWT <jooaaooskt@gmail.com>
+Date:   Fri Oct 7 19:12:51 2022 -0300
+
+    adiciona botao e rotas
+
+[33mcommit 72472aacac5d11fb269fdc08f35229d9b930162a[m
+Merge: c65259a e18a700
+Author: Ayanara Nathane <91984348+ayanara@users.noreply.github.com>
+Date:   Fri Oct 7 17:32:33 2022 -0300
+
+    Merge pull request #66 from tryber/main-group-2-requisito-1
+    
+    Main group 2 requisito 1
+
+[33mcommit e18a70094136586a30dd11d81d43c59f5c81e59b[m[33m ([m[1;31morigin/main-group-2-requisito-1[m[33m)[m
+Author: Ayanara <aya.nathane@gmail.com>
+Date:   Fri Oct 7 17:25:01 2022 -0300
+
+    requisito 1
+
+[33mcommit d5893bddc81358bcee580f9752c78aabf1494fa9[m
+Author: Ayanara <aya.nathane@gmail.com>
+Date:   Fri Oct 7 16:09:43 2022 -0300
+
+    criando setup redux
+
+[33mcommit c65259ac1c10532d4f265547d194e1d32d7d7f6f[m[33m ([m[1;31morigin/main-group-4-req-x[m[33m, [m[1;31morigin/main-group-28[m[33m, [m[1;31morigin/main-group-12-cria-campo-de-input[m[33m)[m
+Author: trybe-tech-ops <82593112+trybe-tech-ops@users.noreply.github.com>
+Date:   Fri Oct 7 11:23:37 2022 -0300
+
+    .github/workflows/main.yml updated
+
+[33mcommit bb39274fb135830453b0d1cb44dace49cdfa2d11[m
+Author: trybe-tech-ops <82593112+trybe-tech-ops@users.noreply.github.com>
+Date:   Fri Oct 7 11:23:37 2022 -0300
+
+    README.md updated
+
+[33mcommit 538d2ca0bb0faa91b0a7247c1f7494e07f3f34b1[m
+Author: trybe-tech-ops <82593112+trybe-tech-ops@users.noreply.github.com>
+Date:   Fri Oct 7 11:23:36 2022 -0300
+
+    Initial commit
