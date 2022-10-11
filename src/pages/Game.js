@@ -16,10 +16,12 @@ class Game extends React.Component {
     isRedirect: false,
     isDisabled: true,
     borderColorButton: [],
+    totalSeconds: 0,
   };
 
   componentDidMount() {
     this.fetchGameQuest();
+    this.cronometroTimer();
   }
 
   fetchGameQuest = async () => {
@@ -45,17 +47,21 @@ class Game extends React.Component {
     }
   };
 
-  // move = () => {
-  //   const id = setInterval(frame, 10);
-  //   function frame() {
-  //     if (width == 100) {
-  //       clearInterval(id);
-  //     } else {
-  //       width++;
-  //       element.style.width = width + '%';
-  //     }
-  //   }
-  // }
+  cronometroTimer = () => {
+    this.setState({ totalSeconds: 30 }, () => {
+      const second = 1000;
+      const idInterval = setInterval(() => {
+        this.setState((prevState) => ({
+          totalSeconds: prevState.totalSeconds - 1,
+        }), () => {
+          const { totalSeconds } = this.state;
+          if (totalSeconds === 0) {
+            clearInterval(idInterval);
+          }
+        });
+      }, second);
+    });
+  };
 
   // handleClick = (correctAnswer, answers) => {
   //   let aux = [];
@@ -82,16 +88,17 @@ class Game extends React.Component {
   };
 
   render() {
-    const { questions, correctAnswer, answers,
+    const { questions, correctAnswer, answers, totalSeconds,
       isLoading, isRedirect, isDisabled,
       borderColorButton } = this.state;
-    // console.log(questions)
+    const intervalo = 25;
     return (
       <div>
         <Header />
         {isLoading ? <Loading />
           : (
             <section>
+              <p>{ totalSeconds }</p>
               <p data-testid="question-category">{questions[0].category}</p>
               <p data-testid="question-text">{ questions[0].question}</p>
               <span data-testid="answer-options">
@@ -100,6 +107,7 @@ class Game extends React.Component {
                     <button
                       type="button"
                       key={ index }
+                      disabled={ totalSeconds > intervalo || totalSeconds === 0 }
                       className={ isDisabled
                         ? 'button' : borderColorButton[index] }
                       onClick={ () => this.handleClick(correctAnswer, answers) }
