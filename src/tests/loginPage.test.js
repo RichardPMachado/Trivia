@@ -12,7 +12,7 @@ const validEmail = 'email@teste.com';
 describe ('Testes da Página Login', () => {
     it('verifica se há um campo de entrada para nome', () => {
     renderWithRouterAndRedux(<App />);
-
+    
     const inputName = screen.getByTestId('input-player-name');
        
     expect(inputName).toBeInTheDocument();
