@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 
 const num = 3;
@@ -17,6 +18,10 @@ class feedback extends React.Component {
       <div>
         <Header />
         <h1 data-testid="feedback-text">{ text }</h1>
+
+        <Link to="/">
+          <button type="button" data-testid="btn-play-again">Jogar novamente</button>
+        </Link>
       </div>
 
     );
