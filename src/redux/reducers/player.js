@@ -44,7 +44,7 @@ const player = (state = INITIAL_STATE, action) => {
     };
   case ACTION_LOGOUT:
     return {
-      ...INITIAL_STATE,
+      ...state,
       isRedirect: true,
     };
   case COUNTER_POINT:
