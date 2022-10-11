@@ -17,11 +17,13 @@ class Game extends React.Component {
     isRedirect: false,
     isDisabled: true,
     borderColorButton: [],
+    totalSeconds: 0,
     questionsResponse: 0,
   };
 
   componentDidMount() {
     this.fetchGameQuest();
+    this.cronometroTimer();
   }
 
   // shuffleArray = (arr) => {
@@ -46,7 +48,10 @@ class Game extends React.Component {
           responses: [e.correct_answer, ...e.incorrect_answers],
         };
       });
-
+      // const numberAux = 0.5;
+      // const toSorted = [
+      //   results[0].correct_answer, ...results[0].incorrect_answers];
+      // const randomSequence = toSorted.sort(() => Math.random() - numberAux);
       // console.log('toSorted', toSorted); // Tem apenas as respostas, dentro do toSorted.responses (array de strings)
       // console.log('results', results); // Tem as perguntas e respostas
 
@@ -71,6 +76,33 @@ class Game extends React.Component {
     }
   };
 
+  cronometroTimer = () => {
+    this.setState({ totalSeconds: 30 }, () => {
+      const second = 1000;
+      const idInterval = setInterval(() => {
+        this.setState((prevState) => ({
+          totalSeconds: prevState.totalSeconds - 1,
+        }), () => {
+          const { totalSeconds } = this.state;
+          if (totalSeconds === 0) {
+            clearInterval(idInterval);
+          }
+        });
+      }, second);
+    });
+  };
+
+  // handleClick = (correctAnswer, answers) => {
+  //   let aux = [];
+  //   answers.forEach((element) => {
+  //     if (correctAnswer === element) {
+  //       aux = [...aux, 'correct-answer'];
+  //     } else {
+  //       aux = [...aux, 'incorrect-answer'];
+  //     }
+  //   });
+  //   this.setState({ borderColorButton: [...aux], isDisabledColorButton: false });
+  // };
   handleClick = (correctAnswer, answers, index) => {
     const { dispatchPoint } = this.props;
     // console.log(answers);
@@ -104,7 +136,11 @@ class Game extends React.Component {
   };
 
   render() {
-    const { questions, answers,
+    // const { questions, correctAnswer, answers, totalSeconds,
+    //   isLoading, isRedirect, isDisabled,
+    //   borderColorButton } = this.state;
+    const intervalo = 25;
+    const { questions, answers, totalSeconds,
       isLoading, isRedirect, isDisabled,
       borderColorButton, questionsResponse } = this.state;
     return (
@@ -113,6 +149,11 @@ class Game extends React.Component {
         {isLoading ? <Loading />
           : (
             <section>
+
+              <p>{ totalSeconds }</p>
+              {/* <p data-testid="question-category">{questions[0].category}</p> */}
+              {/* <p data-testid="question-text">{ questions[0].question}</p> */}
+
               <p data-testid="question-category">
                 {questions[questionsResponse].category}
               </p>
@@ -123,7 +164,9 @@ class Game extends React.Component {
                     <button
                       type="button"
                       key={ index }
-                      className={ isDisabled ? 'button' : borderColorButton[index] }
+                      disabled={ totalSeconds > intervalo || totalSeconds === 0 }
+                      className={ isDisabled
+                        ? 'button' : borderColorButton[index] }
                       onClick={ () => this.handleClick(
                         questions[questionsResponse].correct_answer,
                         answers[questionsResponse],
@@ -162,11 +205,15 @@ class Game extends React.Component {
 // const mapStateToProps = (state) => ({
 // //   emailProps: state.playerReducer.gravatarEmail,
 // //   nameProps: state.playerReducer.name,
-// //   tokenProps: state.playerReducer.token,
-//   isLoading: state.playerReducer.isLoading,
-//   isRedirect: state.playerReducer.isRedirect,
+//   questionsProps: state.gameReducer.questions,
+//   isLoadingProps: state.playerReducer.isLoading,
+//   // isRedirectProps: state.playerReducer.isRedirect,
 // });
 
+// const mapDispatchToProps = (dispatch) => ({
+//   // dispatchError: () => dispatch(actLogout()),
+//   fetchGameDispatch: () => dispatch(fetchGame()),
+// });
 const mapDispatchToProps = (dispatch) => ({
   dispatchPoint: (payload) => dispatch(counterPointers(payload)),
 });
@@ -181,6 +228,14 @@ Game.propTypes = {
   }).isRequired,
 };
 
+// Game.propTypes = {
+//   resultsProps: PropTypes.shape({
+//     responseCode: PropTypes.number,
+//     questionsProps: PropTypes.shape({
+//       results: PropTypes.shape(PropTypes.objectOf),
+//       responseCode: PropTypes.number,
+//     }),
+//   }).isRequired,
 //   // emailProps: PropTypes.string,
 //   // nameProps: PropTypes.string,
 //   // tokenProps: PropTypes.string,

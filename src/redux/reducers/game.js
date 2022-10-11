@@ -1,13 +1,17 @@
-// // import { FIVE_NEW_QUESTIONS } from '../actions';
+// import {  } from '../actions';
 
+// // const INITIAL_STATE = {
+// //   currentQuestion: 0,
+// //   questions: [],
+// // };
 // const INITIAL_STATE = {
-//   currentQuestion: 0,
-//   questions: [],
+//   btnDisabled: false,
+//   seconds: 30,
 // };
 
 // const gameReducer = (state = INITIAL_STATE, action) => {
 //   const { payload } = action;
-//   console.log('oi', payload);
+//   // console.log('oi', payload);
 
 //   switch (action.type) {
 //   case FIVE_NEW_QUESTIONS:
