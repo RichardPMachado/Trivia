@@ -124,6 +124,7 @@ class Game extends React.Component {
     const { questions, answers, totalSeconds,
       isLoading, isRedirect, isDisabled,
       borderColorButton, questionsResponse } = this.state;
+    const intervalo = 25;
     return (
       <div>
         <Header />
@@ -142,6 +143,7 @@ class Game extends React.Component {
                       type="button"
                       key={ index }
                       className={ isDisabled ? 'button' : borderColorButton[index] }
+                      disabled={ totalSeconds > intervalo || totalSeconds === 0 }
                       onClick={ () => this.handleClick(
                         questions[questionsResponse].correct_answer,
                         answers[questionsResponse],
@@ -158,7 +160,7 @@ class Game extends React.Component {
                 }
                 <br />
                 <br />
-                {borderColorButton.length > 0 ? (
+                {borderColorButton.length > 0 || totalSeconds === 0 ? (
                   <button
                     className="btn-next-question"
                     type="button"

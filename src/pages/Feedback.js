@@ -32,7 +32,7 @@ class feedback extends React.Component {
             Play Again
           </button>
         </Link>
-        <Link to="/Ranking">
+        <Link to="/ranking">
           <button
             type="button"
             data-testid="btn-ranking"

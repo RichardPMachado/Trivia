@@ -14,6 +14,7 @@ const INITIAL_STATE = {
   token: '',
   isLoading: false,
   isRedirect: false,
+  ranking: [],
 };
 
 const player = (state = INITIAL_STATE, action) => {
@@ -51,6 +52,7 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       score: state.score + 1,
+      // ranking: [...state.ranking, payload],
     };
   default:
     return state;

@@ -21,7 +21,7 @@ function App() {
       <Route component={ Game } path="/game-page" exact />
       <Route component={ Configuracao } path="/config" exact />
       <Route component={ feedback } path="/feedback" exact />
-      <Route component={ Ranking } path="/Ranking" exact />
+      <Route component={ Ranking } path="/ranking" exact />
     </Switch>
   );
 }
