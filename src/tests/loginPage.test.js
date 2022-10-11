@@ -3,7 +3,7 @@ import App from '../App';
 import renderWithRouterAndRedux from "./helpers/renderWithRouterAndRedux";
 import { screen } from '@testing-library/react'
 import userEvent from "@testing-library/user-event";
-//import { fetchApi, fetchQuestions } from "../services";
+
 
 
 const validName = 'nomeTeste';
