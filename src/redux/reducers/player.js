@@ -50,8 +50,8 @@ const playerReducer = (state = INITIAL_STATE, action) => {
   case COUNTER_POINT:
     return {
       ...state,
-      score: state.score + 1
-    }
+      score: state.score + 1,
+    };
   default:
     return state;
   }
