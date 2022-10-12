@@ -9,7 +9,7 @@ class feedback extends React.Component {
     const { score, assertions } = this.props;
     const num = 3;
     let text = '';
-    if (score < num) {
+    if (assertions < num) {
       text = 'Could be better...';
     } else {
       text = 'Well Done!';

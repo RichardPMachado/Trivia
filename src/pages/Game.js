@@ -8,6 +8,7 @@ import Loading from '../components/Loading';
 import './Game.css';
 
 const num = 4;
+const trinta = 30;
 class Game extends React.Component {
   state = {
     questions: [],
@@ -18,11 +19,12 @@ class Game extends React.Component {
     isDisabled: true,
     borderColorButton: [],
     questionsResponse: 0,
+    breakTimer: false,
   };
 
   componentDidMount() {
     this.fetchGameQuest();
-    this.cronometroTimer();
+    this.cronometroTimer(trinta);
   }
 
   // shuffleArray = (arr) => {
@@ -72,15 +74,15 @@ class Game extends React.Component {
     }
   };
 
-  cronometroTimer = () => {
-    this.setState({ totalSeconds: 30 }, () => {
+  cronometroTimer = (thirtySeconds) => {
+    this.setState({ totalSeconds: thirtySeconds }, () => {
       const second = 1000;
       const idInterval = setInterval(() => {
         this.setState((prevState) => ({
           totalSeconds: prevState.totalSeconds - 1,
         }), () => {
-          const { totalSeconds } = this.state;
-          if (totalSeconds === 0) {
+          const { totalSeconds, breakTimer } = this.state;
+          if (totalSeconds === 0 || breakTimer) {
             clearInterval(idInterval);
           }
         });
@@ -90,7 +92,12 @@ class Game extends React.Component {
 
   handleClick = (correctAnswer, answers, index) => {
     const { dispatchPoint } = this.props;
-    // console.log(answers);
+    const { totalSeconds, questions, questionsResponse } = this.state;
+    const level = {
+      easy: 1,
+      medium: 2,
+      hard: 3,
+    };
     let test = [];
     answers.forEach((element) => {
       if (correctAnswer === element) {
@@ -99,25 +106,25 @@ class Game extends React.Component {
         test = [...test, 'incorrect-answer'];
       }
     });
-    this.setState({ borderColorButton: [...test], isDisabled: false });
-    // console.log(questions[index].difficulty);
+    this.setState({ borderColorButton: [...test], isDisabled: false, breakTimer: true });
+    const { difficulty } = questions[questionsResponse];
     if (answers[index] === correctAnswer) {
-      dispatchPoint();
+      dispatchPoint({ timerPoint: totalSeconds, levelPoint: level[difficulty] });
     }
   };
 
   handleNext = () => {
     const { questionsResponse } = this.state;
     const { history } = this.props;
-
     if (questionsResponse === num) {
       history.push('/feedback');
     }
-
     this.setState({
       questionsResponse: questionsResponse + 1,
       borderColorButton: [],
+      breakTimer: false,
     });
+    this.cronometroTimer(trinta);
   };
 
   render() {
