@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { criarImg } from '../redux/actions/index';
 import Header from '../components/Header';
+import './CSS/ranking.css';
 
 class Ranking extends React.Component {
   toHome = () => {
@@ -16,7 +17,7 @@ class Ranking extends React.Component {
     return (
       <div>
         <Header />
-        <div>
+        <div className="ranking">
           <h1 data-testid="ranking-title">Ranking</h1>
           <img
             src={ profile }

@@ -133,17 +133,29 @@ class Game extends React.Component {
       borderColorButton, questionsResponse } = this.state;
     const intervalo = 25;
     return (
-      <div>
+      <div className="game_page">
         <Header />
         {isLoading ? <Loading />
           : (
-            <section>
+            <section className="section">
               <p>{totalSeconds}</p>
-              <p data-testid="question-category">
+              <p
+                className="question-category"
+                data-testid="question-category"
+              >
+
                 {questions[questionsResponse].category}
               </p>
-              <p data-testid="question-text">{questions[questionsResponse].question}</p>
-              <span data-testid="answer-options">
+              <p
+                className="question-text"
+                data-testid="question-text"
+              >
+                {questions[questionsResponse].question}
+
+              </p>
+              <span
+                data-testid="answer-options"
+              >
                 {
                   answers[questionsResponse].map((answer, index) => (
                     <button

@@ -1,6 +1,8 @@
 body {
   background-image: url('../../img/background.png');
+  background-repeat: no-repeat;
   background-size: cover;
+  background-color: rgb(0, 0, 0);
 }
 
 div .containerLogin {
