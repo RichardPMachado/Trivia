@@ -1,38 +1,52 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { criarImg } from '../redux/actions/index';
+import { criarImg, restartGameRequest } from '../redux/actions/index';
 import Header from '../components/Header';
+import addRanking from '../LocalStorage/localStorage';
 
 class Ranking extends React.Component {
+  componentDidMount() {
+    const { restartGameDispatch } = this.props;
+    restartGameDispatch();
+  }
+
   toHome = () => {
     const { history } = this.props;
     history.push('/');
   };
 
   render() {
+    const RANKING = 'RANKING';
     const { playerName, gravatarEmail, score } = this.props;
     const profile = criarImg(gravatarEmail);
+    // restartGameDispatch();
+    addRanking({ score, playerName, profile });
+    const readRanking = JSON.parse(localStorage.getItem(RANKING));
     return (
       <div>
-        <Header />
+        {/* <Header /> */}
         <div>
           <h1 data-testid="ranking-title">Ranking</h1>
-          <img
-            src={ profile }
-            alt={ `Imagem do jogador ${playerName}` }
-          />
-          <h3>{ playerName }</h3>
-          <h3>{ score }</h3>
+          { readRanking.map((e, i) => (
+            <div key={ `${i}-${e.playerName}` }>
+              <img
+                src={ e.profile }
+                alt={ `Imagem do jogador ${e.playerName}` }
+              />
+              <h3 data-testid={ `player-name-${i}` }>{ e.playerName }</h3>
+              <h3 data-testid={ `player-score-${i}` }>{ e.score }</h3>
 
-          <button
-            type="button"
-            data-testid="btn-go-home"
-            onClick={ this.toHome }
-          >
-            Home
-          </button>
+            </div>
+          ))}
         </div>
+        <button
+          type="button"
+          data-testid="btn-go-home"
+          onClick={ this.toHome }
+        >
+          Home
+        </button>
       </div>
 
     );
@@ -47,15 +61,14 @@ const mapStateToProps = (state) => ({
 
 Ranking.propTypes = {
   history: PropTypes.array,
+  restartGameRequest: PropTypes.func,
 }.isRequired;
 
-// PropTypes.shape({
-//   history: PropTypes.shape({
-//     push: PropTypes.func,
-//   }).isRequired,
-// });
+const mapDispatchToProps = (dispatch) => ({
+  restartGameDispatch: () => dispatch(restartGameRequest()),
+});
 
-export default connect(mapStateToProps)(Ranking);
+export default connect(mapStateToProps, mapDispatchToProps)(Ranking);
 
 // class Ranking extends Component {
 //   toHome = () => {

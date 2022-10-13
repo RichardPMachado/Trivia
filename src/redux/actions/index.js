@@ -6,6 +6,7 @@ export const TOKEN_REQUEST = 'TOKEN_REQUEST';
 export const GET_USER = 'GET_USER';
 export const ACTION_LOGOUT = 'ACTION_LOGOUT';
 export const COUNTER_POINT = 'COUNTER_POINT';
+export const RESTART_REQ = 'RESTART_REQ';
 // export const FIVE_NEW_QUESTIONS = 'FIVE_NEW_QUESTIONS';
 
 const endPointToken = 'https://opentdb.com/api_token.php?command=request';
@@ -18,6 +19,7 @@ const getUser = (payload) => ({ type: GET_USER, payload });
 
 const actLogout = () => ({ type: ACTION_LOGOUT });
 // const questionsLoaded = (payload) => ({ type: FIVE_NEW_QUESTIONS, payload });
+const restartGameRequest = () => ({ type: RESTART_REQ });
 const finalRequest = () => ({ type: FINAL_REQ });
 
 const getApiToken = () => async (dispatch) => {
@@ -63,7 +65,7 @@ export {
   finalRequest,
   tokenRequest,
   getUser,
-  // questionsLoaded,
+  restartGameRequest,
   fetchGame,
   actLogout,
   counterPointers,

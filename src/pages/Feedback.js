@@ -14,10 +14,11 @@ class feedback extends React.Component {
     } else {
       text = 'Well Done!';
     }
+
     return (
       <div>
         <Header />
-        <h1 data-testid="feedback-text">{ text }</h1>
+        <h1 data-testid="feedback-text">{text}</h1>
         <h2 data-testid="feedback-total-question">
           {assertions}
         </h2>
