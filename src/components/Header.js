@@ -13,7 +13,7 @@ class Header extends React.Component {
         <img
           data-testid="header-profile-picture"
           src={ profile }
-          alt="imagen do jogador"
+          alt=""
         />
         <h2 data-testid="header-player-name">{ name }</h2>
         <h2 data-testid="header-score">{ score }</h2>
