@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // import Header from '../components/Header';
-import './CSS/ranking.css';
+// import './CSS/ranking.css';
 
 class Ranking extends React.Component {
   // componentDidMount() {

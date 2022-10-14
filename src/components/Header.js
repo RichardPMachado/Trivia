@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { criarImg } from '../redux/actions/index';
-import '../pages/CSS/header.css';
+// import '../pages/CSS/header.css';
 
 class Header extends React.Component {
   render() {

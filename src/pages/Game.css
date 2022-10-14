@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap'); 
 .correct-answer {
   border: 3px solid rgb(6, 240, 15);
 }
@@ -69,4 +69,4 @@ button {
 p {
   font-family: 'Silkscreen', cursive; 
   font-size: 2rem;
-} */
+}

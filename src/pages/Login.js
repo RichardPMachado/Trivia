@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { getUser, getApiToken } from '../redux/actions';
-import './CSS/Login.css';
+// import './CSS/Login.css';
 import logoTrivia from '../img/logo-trivia.png';
 
 class Login extends React.Component {

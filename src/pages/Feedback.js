@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
-import './CSS/feedback.css';
+// import './CSS/feedback.css';
 import addRanking from '../LocalStorage/localStorage';
 import { criarImg } from '../redux/actions/index';
 
