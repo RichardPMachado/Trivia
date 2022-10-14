@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { getUser, getApiToken } from '../redux/actions';
+import './CSS/Login.css';
+import logoTrivia from '../img/logo-trivia.png';
 
 class Login extends React.Component {
   state = {
@@ -51,8 +53,12 @@ class Login extends React.Component {
     const { name, email, isDisabled, isRedirect } = this.state;
 
     return (
-      <div>
-        <form>
+      <div className="containerLogin">
+        <img
+          src={ logoTrivia }
+          alt="logo trivia"
+        />
+        <form className="form_login">
           <label htmlFor="name">
             <input
               className="input-player-name"
@@ -76,7 +82,7 @@ class Login extends React.Component {
             />
           </label>
           <button
-            className="BTN_login"
+            className="BTN_Login"
             type="submit"
             data-testid="btn-play"
             disabled={ isDisabled }
@@ -85,6 +91,7 @@ class Login extends React.Component {
             Play
           </button>
           <button
+            className="BTN_Config"
             data-testid="btn-settings"
             type="button"
             onClick={ this.handleClickConfig }

@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
-import { fetchGame, counterPointers } from '../redux/actions';
+import { fetchGame, counterPointers, restartGameRequest } from '../redux/actions';
 import Loading from '../components/Loading';
 import './Game.css';
 
@@ -23,6 +23,9 @@ class Game extends React.Component {
   };
 
   componentDidMount() {
+    const { restartGameDispatch } = this.props;
+    restartGameDispatch();
+
     this.fetchGameQuest();
     this.cronometroTimer(trinta);
   }
@@ -131,26 +134,38 @@ class Game extends React.Component {
     const { questions, answers, totalSeconds,
       isLoading, isRedirect, isDisabled,
       borderColorButton, questionsResponse } = this.state;
-    const intervalo = 25;
+    // const intervalo = 25;
     return (
-      <div>
+      <div className="game_page">
         <Header />
         {isLoading ? <Loading />
           : (
-            <section>
+            <section className="section">
               <p>{totalSeconds}</p>
-              <p data-testid="question-category">
+              <p
+                className="question-category"
+                data-testid="question-category"
+              >
+
                 {questions[questionsResponse].category}
               </p>
-              <p data-testid="question-text">{questions[questionsResponse].question}</p>
-              <span data-testid="answer-options">
+              <p
+                className="question-text"
+                data-testid="question-text"
+              >
+                {questions[questionsResponse].question}
+
+              </p>
+              <span
+                data-testid="answer-options"
+              >
                 {
                   answers[questionsResponse].map((answer, index) => (
                     <button
                       type="button"
                       key={ index }
                       className={ isDisabled ? 'button' : borderColorButton[index] }
-                      disabled={ totalSeconds > intervalo || totalSeconds === 0 }
+                      disabled={ totalSeconds === 0 }
                       onClick={ () => this.handleClick(
                         questions[questionsResponse].correct_answer,
                         answers[questionsResponse],
@@ -196,6 +211,7 @@ class Game extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   dispatchPoint: (payload) => dispatch(counterPointers(payload)),
+  restartGameDispatch: () => dispatch(restartGameRequest()),
 });
 // dispatchError: () => dispatch(actLogout()),;
 
@@ -203,6 +219,7 @@ export default connect(null, mapDispatchToProps)(Game);
 
 Game.propTypes = {
   dispatchPoint: PropTypes.func.isRequired,
+  restartGameDispatch: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,

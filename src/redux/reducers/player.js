@@ -54,7 +54,7 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       score: state.score
-      + (ten + (action.payload.timerPoint * action.payload.levelPoint)),
+      + Number(ten + (action.payload.timerPoint * action.payload.levelPoint)),
       assertions: state.assertions + 1,
       // ranking: [...state.ranking, payload],
     };

@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { criarImg, restartGameRequest } from '../redux/actions/index';
-import Header from '../components/Header';
-import addRanking from '../LocalStorage/localStorage';
+// import Header from '../components/Header';
+import './CSS/ranking.css';
 
 class Ranking extends React.Component {
-  componentDidMount() {
-    const { restartGameDispatch } = this.props;
-    restartGameDispatch();
-  }
+  // componentDidMount() {
+  //   const { restartGameDispatch } = this.props;
+  //   restartGameDispatch();
+  // }
 
   toHome = () => {
     const { history } = this.props;
@@ -18,18 +17,19 @@ class Ranking extends React.Component {
 
   render() {
     const RANKING = 'RANKING';
-    const { playerName, gravatarEmail, score } = this.props;
-    const profile = criarImg(gravatarEmail);
-    // restartGameDispatch();
-    addRanking({ score, playerName, profile });
+    // const { playerName, gravatarEmail, score } = this.props;
+    // const profile = criarImg(gravatarEmail);
+    // // restartGameDispatch();
+    // addRanking({ score, playerName, profile });
     const readRanking = JSON.parse(localStorage.getItem(RANKING));
     return (
+
       <div>
         {/* <Header /> */}
-        <div>
+        <div className="ranking">
           <h1 data-testid="ranking-title">Ranking</h1>
           { readRanking.map((e, i) => (
-            <div key={ `${i}-${e.playerName}` }>
+            <div key={ i }>
               <img
                 src={ e.profile }
                 alt={ `Imagem do jogador ${e.playerName}` }
@@ -61,14 +61,9 @@ const mapStateToProps = (state) => ({
 
 Ranking.propTypes = {
   history: PropTypes.array,
-  restartGameRequest: PropTypes.func,
 }.isRequired;
 
-const mapDispatchToProps = (dispatch) => ({
-  restartGameDispatch: () => dispatch(restartGameRequest()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Ranking);
+export default connect(mapStateToProps)(Ranking);
 
 // class Ranking extends Component {
 //   toHome = () => {

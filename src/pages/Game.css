@@ -1,7 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap'); 
 .correct-answer {
   border: 3px solid rgb(6, 240, 15);
 }
 
 .incorrect-answer {
   border: 3px solid red;
+  font-family: 'Secular One', sans-serif; 
+}
+
+button {
+  background: #F9BA18;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 100px;
+  color: aliceblue;
+  padding: 10px;
+  width: 320px;
+  max-width: auto;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-family: 'Secular One', sans-serif; 
+  font-size: 20PX;
+}
+
+.btn-next-question {
+  background: #EA5D5D;
+  border-radius: 100px;
+  color: aliceblue;
+  padding: 10px;
+  width: 320px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  border: none;
+
+}
+
+
+.section {
+  background: #fff;
+  border-radius: 20px;
+  width: 50rem;
+  padding: 2rem;
+  margin: 2rem;
+  margin: 0 auto ;
+  margin-top: 190PX;
+  text-align: center;
+  
+
+}
+
+.question-category {
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-family: 'Secular One', sans-serif; 
+}
+
+.question-text {
+  font-size: 25px;
+  margin-bottom: 20px;
+  
+}
+
+.answer-options {
+  font-size: 5rem;
+  color: blue;
+}
+
+p {
+  font-family: 'Silkscreen', cursive; 
+  font-size: 2rem;
 }
