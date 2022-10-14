@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { fetchGame, counterPointers, restartGameRequest } from '../redux/actions';
 import Loading from '../components/Loading';
-// import './Game.css';
+import './Game.css';
 
 const num = 4;
 const trinta = 30;
