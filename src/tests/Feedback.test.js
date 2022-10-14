@@ -83,7 +83,7 @@ describe('Verifica tela de Feedback', () => {
     test('verifica botão de play again', () => {
         const {history} = renderWithRouterAndRedux(<Feedback />);
         const buttonPlay = screen.getByTestId('btn-play-again');
-        
+
         userEvent.click(buttonPlay);
         expect(history.location.pathname).toBe('/');
     })
