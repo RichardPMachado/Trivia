@@ -4,6 +4,7 @@ import { ACTION_LOGOUT,
   INITIAL_REQ,
   TOKEN_REQUEST,
   COUNTER_POINT,
+  RESTART_REQ,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -53,9 +54,15 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       score: state.score
-      + (ten + (action.payload.timerPoint * action.payload.levelPoint)),
+      + Number(ten + (action.payload.timerPoint * action.payload.levelPoint)),
       assertions: state.assertions + 1,
       // ranking: [...state.ranking, payload],
+    };
+  case RESTART_REQ:
+    return {
+      ...state,
+      score: 0,
+      assertions: 0,
     };
   default:
     return state;
